@@ -27,7 +27,8 @@ export class App extends Component {
           this.setState(prevState => {
             return { items: hits, loader: false, page: prevState.page + 1 };
           });
-        });
+        })
+        .catch(error => error.message);
     }
   }
   onSubmit = name => {
@@ -59,12 +60,17 @@ export class App extends Component {
     this.setState({ currentImage: url });
   };
   render() {
-    const { items, loader, showModal, currentImage } = this.state;
+    const { items, loader, showModal, currentImage, name } = this.state;
 
     return (
       <div>
         <SearchBar onSubmit={this.onSubmit} />
         {showModal && <Modal onClose={this.toggleModal} url={currentImage} />}
+        {items?.length === 0 && (
+          <h1 className="error-text">
+            We could not find the photos for the request '{name}'
+          </h1>
+        )}
         <Gallery>
           {items &&
             items.map(({ id, largeImageURL, webformatURL }) => {

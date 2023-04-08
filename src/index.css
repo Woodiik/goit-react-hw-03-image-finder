@@ -43,6 +43,10 @@ img {
   height: auto;
 }
 
+.error-text {
+  text-align: center;
+}
+
 /*
  * Стили компонента App
  */
