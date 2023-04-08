@@ -32,7 +32,7 @@ export class App extends Component {
     }
   }
   onSubmit = name => {
-    this.setState({ name });
+    this.setState({ name, page: 1 });
   };
   onButtonClick = () => {
     const { name, page } = this.state;
