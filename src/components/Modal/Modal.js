@@ -16,9 +16,14 @@ export class Modal extends Component {
       this.props.onClose();
     }
   };
+  handleOverlayClick = e => {
+    if (e.target === e.currentTarget) {
+      this.props.onClose();
+    }
+  };
   render() {
     return createPortal(
-      <div className="overlay">
+      <div className="overlay" onClick={this.handleOverlayClick}>
         <div className="modal">
           <img src={this.props.url} alt="" />
         </div>
